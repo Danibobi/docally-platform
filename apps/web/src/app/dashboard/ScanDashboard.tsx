@@ -1651,11 +1651,23 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
         }
 
         /* ── BENTO GRID ─────────────────────────────── */
+        /*
+          Design tokens:
+          --audit-bg:        #B8C0B3
+          --audit-card:      #F7F8F5
+          --audit-text:      #0D0D0D
+          --audit-muted:     #60645D
+          --audit-lime:      #DFFF3F
+          --audit-soft-lime: #EEFFD4
+          --audit-border:    rgba(13,13,13,0.06)
+          --audit-shadow:    0 18px 40px rgba(20,30,20,0.08)
+        */
 
         .bento-section {
-          background: #B8BFB2;
-          border-radius: 20px;
-          padding: 32px;
+          background: #B8C0B3;
+          border-radius: 24px;
+          padding: 36px 32px 40px;
+          margin-top: 8px;
         }
 
         .bento-header {
@@ -1663,21 +1675,28 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
           align-items: flex-start;
           justify-content: space-between;
           gap: 20px;
-          margin-bottom: 28px;
+          margin-bottom: 32px;
           flex-wrap: wrap;
         }
 
+        .bento-header-left {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
         .bento-title {
-          font-size: 26px;
-          font-weight: 600;
-          color: #1A1A18;
-          margin: 0 0 4px;
-          line-height: 1.2;
+          font-size: 28px;
+          font-weight: 700;
+          color: #0D0D0D;
+          margin: 0;
+          line-height: 1.15;
+          letter-spacing: -0.02em;
         }
 
         .bento-subtitle {
           font-size: 14px;
-          color: #4A4A44;
+          color: #60645D;
           margin: 0;
           line-height: 1.4;
         }
@@ -1699,35 +1718,48 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
         .bento-filter-chip {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          border: 1.5px solid rgba(0,0,0,0.13);
+          gap: 7px;
+          border: 1.5px solid rgba(13,13,13,0.12);
           border-radius: 999px;
-          background: #F5F5EE;
-          color: #2A2A24;
-          padding: 7px 14px;
+          background: #F7F8F5;
+          color: #0D0D0D;
+          padding: 8px 16px;
           font-size: 13px;
           font-weight: 500;
           cursor: pointer;
-          transition: background 0.12s, border-color 0.12s;
+          transition: background 0.12s, border-color 0.12s, transform 0.1s;
           white-space: nowrap;
         }
 
+        .bento-filter-chip span {
+          opacity: 0.55;
+          font-weight: 400;
+        }
+
         .bento-filter-chip:hover:not(.is-active) {
-          background: #EDEEE8;
+          background: #EFF0EB;
+          border-color: rgba(13,13,13,0.18);
         }
 
         .bento-filter-chip.is-active {
           background: #DFFF3F;
-          border-color: #CBEE2A;
-          color: #1A1A14;
+          border-color: transparent;
+          color: #0D0D0D;
+        }
+
+        .bento-filter-chip.is-active span {
+          opacity: 0.7;
         }
 
         .bento-sort-chip {
-          border: 1.5px solid rgba(0,0,0,0.13);
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          border: 1.5px solid rgba(13,13,13,0.12);
           border-radius: 999px;
-          background: #F5F5EE;
-          color: #2A2A24;
-          padding: 7px 14px;
+          background: #F7F8F5;
+          color: #0D0D0D;
+          padding: 8px 16px;
           font-size: 13px;
           font-weight: 500;
           cursor: pointer;
@@ -1738,20 +1770,22 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
         .issue-bento-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 16px;
+          gap: 18px;
         }
 
         .issue-bento-card {
           background: #F7F8F5;
           border-radius: 28px;
+          border: 1px solid rgba(13,13,13,0.06);
           padding: 28px;
-          min-height: 260px;
+          min-height: 264px;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
           cursor: pointer;
-          transition: transform 0.15s, box-shadow 0.15s;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+          transition: transform 0.18s cubic-bezier(0.23,1,0.32,1),
+                      box-shadow 0.18s cubic-bezier(0.23,1,0.32,1);
+          box-shadow: 0 18px 40px rgba(20,30,20,0.08);
         }
 
         .issue-bento-card.large {
@@ -1760,20 +1794,21 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
 
         .issue-bento-card.wide {
           grid-column: span 2;
-          min-height: 200px;
+          min-height: 210px;
         }
 
         .issue-bento-card:hover:not(.is-fixed) {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+          transform: translateY(-3px);
+          box-shadow: 0 28px 56px rgba(20,30,20,0.13);
         }
 
         .issue-bento-card.is-selected {
-          box-shadow: 0 0 0 2.5px #DFFF3F, 0 4px 20px rgba(0,0,0,0.08);
+          box-shadow: 0 0 0 2.5px #DFFF3F,
+                      0 18px 40px rgba(20,30,20,0.1);
         }
 
         .issue-bento-card.is-fixed {
-          opacity: 0.6;
+          opacity: 0.55;
           cursor: default;
         }
 
@@ -1784,25 +1819,26 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
           align-items: center;
           justify-content: center;
           border-radius: 14px;
-          background: rgba(223,255,63,0.22);
-          color: #4A6B1A;
+          background: #EEFFD4;
+          color: #3D5C0A;
           flex-shrink: 0;
         }
 
         .bento-card-title {
           font-size: 20px;
           font-weight: 600;
-          color: #1A1A18;
+          color: #0D0D0D;
           line-height: 1.25;
-          margin: 4px 0 0;
-          flex: 1;
+          margin: 2px 0 0;
+          letter-spacing: -0.01em;
         }
 
         .bento-card-desc {
           font-size: 14px;
-          color: #6A6A62;
-          line-height: 1.5;
+          color: #60645D;
+          line-height: 1.55;
           margin: 0;
+          flex: 1;
           display: -webkit-box;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
@@ -1814,43 +1850,43 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
           align-items: center;
           gap: 6px;
           flex-wrap: wrap;
-          margin-top: auto;
         }
 
         .bento-severity-badge {
           border-radius: 999px;
-          padding: 4px 11px;
+          padding: 4px 12px;
           font-size: 12px;
           font-weight: 500;
           text-transform: capitalize;
+          white-space: nowrap;
         }
 
         .bento-severity-badge.critical {
-          background: rgba(192,57,43,0.12);
-          color: #C0392B;
+          background: rgba(192,57,43,0.10);
+          color: #B03020;
         }
 
         .bento-severity-badge.high {
-          background: rgba(214,137,16,0.13);
-          color: #A8700A;
+          background: rgba(214,137,16,0.12);
+          color: #9A6508;
         }
 
         .bento-severity-badge.medium {
-          background: rgba(74,144,217,0.12);
-          color: #2E7FC0;
+          background: rgba(74,144,217,0.11);
+          color: #2868A8;
         }
 
         .bento-severity-badge.low {
-          background: rgba(74,74,70,0.1);
-          color: #5A5A54;
+          background: rgba(13,13,13,0.07);
+          color: #60645D;
         }
 
         .bento-wcag-badge {
-          border: 1px solid rgba(0,0,0,0.14);
+          border: 1px solid rgba(13,13,13,0.12);
           border-radius: 999px;
           background: transparent;
-          color: #4A4A44;
-          padding: 4px 11px;
+          color: #60645D;
+          padding: 4px 12px;
           font-size: 12px;
           white-space: nowrap;
         }
@@ -1858,10 +1894,10 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
         .bento-fine-badge {
           border: 1px solid;
           border-radius: 999px;
-          padding: 4px 11px;
+          padding: 4px 12px;
           font-size: 12px;
           white-space: nowrap;
-          opacity: 0.8;
+          opacity: 0.75;
         }
 
         .bento-solution-btn {
@@ -1869,27 +1905,28 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
           align-items: center;
           gap: 6px;
           background: #DFFF3F;
-          color: #1A1A14;
+          color: #0D0D0D;
           border: none;
           border-radius: 999px;
           padding: 10px 20px;
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 600;
           cursor: pointer;
           align-self: flex-start;
-          margin-top: 4px;
-          transition: background 0.12s, transform 0.1s;
+          margin-top: 2px;
+          transition: background 0.12s, transform 0.12s;
           white-space: nowrap;
+          letter-spacing: -0.01em;
         }
 
         .bento-solution-btn:hover:not(:disabled) {
-          background: #CBEE2A;
+          background: #C8F020;
           transform: translateX(2px);
         }
 
         .bento-solution-btn:disabled {
-          background: rgba(0,0,0,0.08);
-          color: #8A8A84;
+          background: rgba(13,13,13,0.07);
+          color: #60645D;
           cursor: default;
         }
 
@@ -1915,7 +1952,11 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
           }
 
           .bento-section {
-            padding: 20px 16px;
+            padding: 24px 16px 28px;
+          }
+
+          .bento-title {
+            font-size: 22px;
           }
         }
 
