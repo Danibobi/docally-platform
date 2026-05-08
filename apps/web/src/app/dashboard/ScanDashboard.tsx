@@ -10,10 +10,14 @@ import {
   Check,
   CheckCircle,
   ChevronLeft,
+  Clock,
   Code2,
+  Eye,
   FileText,
   Gavel,
+  Layers,
   Minus,
+  Navigation,
   Plus,
   RotateCcw,
   Sparkles,
@@ -1646,6 +1650,275 @@ export function ScanDashboard({url, result, onNewScan}: ScanDashboardProps) {
           }
         }
 
+        /* ── BENTO GRID ─────────────────────────────── */
+
+        .bento-section {
+          background: #B8BFB2;
+          border-radius: 20px;
+          padding: 32px;
+        }
+
+        .bento-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 20px;
+          margin-bottom: 28px;
+          flex-wrap: wrap;
+        }
+
+        .bento-title {
+          font-size: 26px;
+          font-weight: 600;
+          color: #1A1A18;
+          margin: 0 0 4px;
+          line-height: 1.2;
+        }
+
+        .bento-subtitle {
+          font-size: 14px;
+          color: #4A4A44;
+          margin: 0;
+          line-height: 1.4;
+        }
+
+        .bento-header-right {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+
+        .bento-filters {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+
+        .bento-filter-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          border: 1.5px solid rgba(0,0,0,0.13);
+          border-radius: 999px;
+          background: #F5F5EE;
+          color: #2A2A24;
+          padding: 7px 14px;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.12s, border-color 0.12s;
+          white-space: nowrap;
+        }
+
+        .bento-filter-chip:hover:not(.is-active) {
+          background: #EDEEE8;
+        }
+
+        .bento-filter-chip.is-active {
+          background: #DFFF3F;
+          border-color: #CBEE2A;
+          color: #1A1A14;
+        }
+
+        .bento-sort-chip {
+          border: 1.5px solid rgba(0,0,0,0.13);
+          border-radius: 999px;
+          background: #F5F5EE;
+          color: #2A2A24;
+          padding: 7px 14px;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          white-space: nowrap;
+          user-select: none;
+        }
+
+        .issue-bento-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .issue-bento-card {
+          background: #F7F8F5;
+          border-radius: 28px;
+          padding: 28px;
+          min-height: 260px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          cursor: pointer;
+          transition: transform 0.15s, box-shadow 0.15s;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+        }
+
+        .issue-bento-card.large {
+          grid-column: span 2;
+        }
+
+        .issue-bento-card.wide {
+          grid-column: span 2;
+          min-height: 200px;
+        }
+
+        .issue-bento-card:hover:not(.is-fixed) {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+        }
+
+        .issue-bento-card.is-selected {
+          box-shadow: 0 0 0 2.5px #DFFF3F, 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .issue-bento-card.is-fixed {
+          opacity: 0.6;
+          cursor: default;
+        }
+
+        .bento-card-icon {
+          width: 52px;
+          height: 52px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 14px;
+          background: rgba(223,255,63,0.22);
+          color: #4A6B1A;
+          flex-shrink: 0;
+        }
+
+        .bento-card-title {
+          font-size: 20px;
+          font-weight: 600;
+          color: #1A1A18;
+          line-height: 1.25;
+          margin: 4px 0 0;
+          flex: 1;
+        }
+
+        .bento-card-desc {
+          font-size: 14px;
+          color: #6A6A62;
+          line-height: 1.5;
+          margin: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .bento-card-badges {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          flex-wrap: wrap;
+          margin-top: auto;
+        }
+
+        .bento-severity-badge {
+          border-radius: 999px;
+          padding: 4px 11px;
+          font-size: 12px;
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+
+        .bento-severity-badge.critical {
+          background: rgba(192,57,43,0.12);
+          color: #C0392B;
+        }
+
+        .bento-severity-badge.high {
+          background: rgba(214,137,16,0.13);
+          color: #A8700A;
+        }
+
+        .bento-severity-badge.medium {
+          background: rgba(74,144,217,0.12);
+          color: #2E7FC0;
+        }
+
+        .bento-severity-badge.low {
+          background: rgba(74,74,70,0.1);
+          color: #5A5A54;
+        }
+
+        .bento-wcag-badge {
+          border: 1px solid rgba(0,0,0,0.14);
+          border-radius: 999px;
+          background: transparent;
+          color: #4A4A44;
+          padding: 4px 11px;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+
+        .bento-fine-badge {
+          border: 1px solid;
+          border-radius: 999px;
+          padding: 4px 11px;
+          font-size: 12px;
+          white-space: nowrap;
+          opacity: 0.8;
+        }
+
+        .bento-solution-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #DFFF3F;
+          color: #1A1A14;
+          border: none;
+          border-radius: 999px;
+          padding: 10px 20px;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          align-self: flex-start;
+          margin-top: 4px;
+          transition: background 0.12s, transform 0.1s;
+          white-space: nowrap;
+        }
+
+        .bento-solution-btn:hover:not(:disabled) {
+          background: #CBEE2A;
+          transform: translateX(2px);
+        }
+
+        .bento-solution-btn:disabled {
+          background: rgba(0,0,0,0.08);
+          color: #8A8A84;
+          cursor: default;
+        }
+
+        @media (max-width: 1024px) {
+          .issue-bento-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .issue-bento-card.large,
+          .issue-bento-card.wide {
+            grid-column: span 2;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .issue-bento-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .issue-bento-card.large,
+          .issue-bento-card.wide {
+            grid-column: span 1;
+          }
+
+          .bento-section {
+            padding: 20px 16px;
+          }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           *,
           *::before,
@@ -1836,137 +2109,108 @@ function FocusModePreviewPanel({highlightedCategoryId}: {highlightedCategoryId: 
   );
 }
 
+function bentoBadgeSize(index: number): string {
+  if (index % 6 === 0) return "large";
+  if (index % 6 === 3) return "wide";
+  return "";
+}
+
 function IssuesTab({issues, selectedIssueId, selectFix}: {issues: BarrierIssue[]; selectedIssueId: string; selectFix: (issue: BarrierIssue) => void}) {
-  const [activeIssueTab, setActiveIssueTab] = useState<IssueTabKey>("all");
+  const [activeFilter, setActiveFilter] = useState<IssueTabKey>("all");
   const counts = issueCounts(issues);
-  const visibleIssues = sortIssuesForTab(issues, activeIssueTab);
-  const groupedIssues = activeIssueTab === "all" ? groupIssuesByBarrier(visibleIssues) : [];
+  const visibleIssues = sortIssuesForTab(issues, activeFilter);
 
   return (
-    <section className="issues-table-section">
-      <header className="issues-section-header">
-        <div>
-          <div className="issues-title-row">
-            <p className="issues-label">ALL ISSUES</p>
-            <span className={`${mono.className} issues-count-badge`}>{issues.length} issues</span>
-          </div>
+    <section className="bento-section">
+      <header className="bento-header">
+        <div className="bento-header-left">
+          <h2 className="bento-title">Issues found</h2>
+          <p className="bento-subtitle">Accessibility issues detected in your project.</p>
         </div>
-        <div className="severity-summary-chips" aria-label="Issue severity summary">
-          {(["critical", "high", "medium"] as const).map((severity) => {
-            const meta = severityMeta(severity);
-            return (
-              <span className={`${mono.className} severity-summary-chip ${severity}`} key={severity}>
-                <i style={{background: meta.dot}} />
-                {counts[severity]} {meta.label[0] + meta.label.slice(1).toLowerCase()}
-              </span>
-            );
-          })}
+        <div className="bento-header-right">
+          <div className="bento-filters">
+            {([
+              ["all", "All issues", counts.total],
+              ["critical", "Critical", counts.critical],
+              ["high", "High", counts.high],
+              ["medium", "Medium", counts.medium],
+            ] as Array<[IssueTabKey, string, number]>).map(([key, label, count]) => (
+              <button
+                key={key}
+                className={`bento-filter-chip ${activeFilter === key ? "is-active" : ""}`}
+                type="button"
+                onClick={() => setActiveFilter(key)}
+              >
+                {label} <span className={mono.className}>{count}</span>
+              </button>
+            ))}
+          </div>
+          <div className="bento-sort-chip">Sort by: Severity ↓</div>
         </div>
       </header>
 
-      <nav className="issue-tabs" aria-label="Issue severity filters">
-        {([
-          ["all", "All", counts.total],
-          ["critical", "Critical", counts.critical],
-          ["high", "High", counts.high],
-          ["medium", "Medium", counts.medium],
-          ["low", "Low", counts.low],
-          ["fixed", "Fixed", counts.fixed],
-        ] as Array<[IssueTabKey, string, number]>).map(([key, label, count]) => (
-          <button
-            className={activeIssueTab === key ? "is-active" : ""}
-            type="button"
-            key={key}
-            aria-label={`${label} ${count}`}
-            onClick={() => setActiveIssueTab(key)}
-          >
-            {label}
-            <span className={mono.className}>{count}</span>
-          </button>
-        ))}
-      </nav>
-
-      <div className="issues-table" role="table" aria-label="Accessibility issues">
-        <div className="issues-table-header" role="row">
-          <span />
-          <span>SEVERITY</span>
-          <span>ISSUE</span>
-          <span>BARRIER</span>
-          <span>SIZE</span>
-          <span>ELEMENTS</span>
-          <span>WCAG</span>
-          <span>FINE</span>
-          <span />
-        </div>
-
-        {activeIssueTab === "all" && groupedIssues.length ? (
-          groupedIssues.map((group) => (
-            <div className="issue-group" key={group.barrier}>
-              <div className="issue-group-header">
-                <i className={`barrier-dot barrier-${group.barrier}`} />
-                <span>{barrierShortName(group.barrier).toUpperCase()}</span>
-                <em className={mono.className}>{group.issues.length} issues</em>
-              </div>
-              {group.issues.map((issue) => (
-                <IssueTableRow
-                  issue={issue}
-                  isSelected={issue.id === selectedIssueId}
-                  key={issue.id}
-                  selectFix={selectFix}
-                />
-              ))}
-            </div>
-          ))
-        ) : null}
-
-        {activeIssueTab !== "all" && visibleIssues.length ? (
-          visibleIssues.map((issue) => (
-            <IssueTableRow
+      {visibleIssues.length ? (
+        <div className="issue-bento-grid">
+          {visibleIssues.map((issue, index) => (
+            <IssueBentoCard
+              key={issue.id}
               issue={issue}
               isSelected={issue.id === selectedIssueId}
-              key={issue.id}
+              sizeClass={bentoBadgeSize(index)}
               selectFix={selectFix}
             />
-          ))
-        ) : null}
-
-        {!visibleIssues.length ? <IssueEmptyState tab={activeIssueTab} /> : null}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <IssueEmptyState tab={activeFilter} />
+      )}
     </section>
   );
 }
 
-function IssueTableRow({issue, isSelected, selectFix}: {issue: BarrierIssue; isSelected: boolean; selectFix: (issue: BarrierIssue) => void}) {
-  const meta = severityMeta(issue.severity);
-  const impact = impactMeta(issue.affected_count);
+function barrierIcon(barrier: BarrierNumber): ReactNode {
+  const icons: Record<BarrierNumber, ReactNode> = {
+    1: <Sparkles size={22} />,
+    2: <Eye size={22} />,
+    3: <FileText size={22} />,
+    4: <Navigation size={22} />,
+    5: <Layers size={22} />,
+    6: <Clock size={22} />,
+  };
+  return icons[barrier];
+}
+
+function IssueBentoCard({issue, isSelected, sizeClass, selectFix}: {
+  issue: BarrierIssue;
+  isSelected: boolean;
+  sizeClass: string;
+  selectFix: (issue: BarrierIssue) => void;
+}) {
   const fine = fineExposureMeta(issue.severity);
   const fixed = issueStatus(issue) === "fixed";
 
-  function handleSelect() {
-    if (!fixed) selectFix(issue);
-  }
-
   return (
-    <button
-      className={`issue-table-row ${issue.severity} ${isSelected ? "is-selected" : ""} ${fixed ? "is-fixed" : ""}`}
-      style={{borderLeftColor: fixed ? "#1E1E1E" : meta.border}}
-      type="button"
-      disabled={fixed}
-      onClick={handleSelect}
-      role="row"
+    <article
+      className={`issue-bento-card ${sizeClass} ${isSelected ? "is-selected" : ""} ${fixed ? "is-fixed" : ""}`}
+      onClick={() => !fixed && selectFix(issue)}
     >
-      <span className="issue-border-space" />
-      <span className={`issue-severity-pill ${issue.severity} ${fixed ? "is-fixed" : ""}`}>{meta.label}</span>
-      <span className="issue-description-cell">
-        <strong>{issue.plain_english}</strong>
-      </span>
-      <span className="issue-barrier-cell">{barrierShortName(issue.barrier)}</span>
-      <span className={`${mono.className} issue-impact-tag ${impact.key}`}>{impact.label}</span>
-      <span className={`${mono.className} issue-elements-cell ${affectedCountClass(issue.affected_count)}`}>{issue.affected_count}</span>
-      <span className={`${mono.className} issue-wcag-cell`}>{issue.wcag_ref}</span>
-      <span className={`${mono.className} issue-fine-cell`} style={{color: fine.color}}>{fine.row}</span>
-      <span className={`issue-action ${fixed ? "is-fixed" : ""}`}>{fixed ? "Fixed ✓" : "Fix →"}</span>
-    </button>
+      <div className="bento-card-icon">{barrierIcon(issue.barrier)}</div>
+      <h3 className="bento-card-title">{issue.plain_english}</h3>
+      <p className="bento-card-desc">{issue.description}</p>
+      <div className="bento-card-badges">
+        <span className={`bento-severity-badge ${issue.severity}`}>{issue.severity}</span>
+        <span className="bento-wcag-badge">WCAG {issue.wcag_ref}</span>
+        <span className="bento-fine-badge" style={{color: fine.color, borderColor: fine.color}}>{fine.row}</span>
+      </div>
+      <button
+        className="bento-solution-btn"
+        type="button"
+        onClick={(e) => { e.stopPropagation(); if (!fixed) selectFix(issue); }}
+        disabled={fixed}
+      >
+        {fixed ? "Fixed ✓" : "See solution →"}
+      </button>
+    </article>
   );
 }
 
