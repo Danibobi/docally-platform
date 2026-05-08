@@ -1,0 +1,27 @@
+{
+  "name": "@docally/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.32",
+    "@docally/shared": "file:../../packages/shared",
+    "@mozilla/readability": "^0.6.0",
+    "@vitejs/plugin-react": "^5.1.2",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "vite": "^7.2.7"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.0",
+    "@types/node": "^24.10.3",
+    "typescript": "^5.9.3"
+  }
+}
