@@ -1,0 +1,7 @@
+project_id = "wndkoxsxdykjovnplniz"
+
+[functions.ai-assistant]
+verify_jwt = false
+
+[functions.quiz-recommend]
+verify_jwt = false
